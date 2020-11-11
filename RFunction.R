@@ -22,12 +22,17 @@ rFunction <- function(data, startTime=NULL, endTime=NULL)
   
   if (startTime>endTime)
   {
-    logger.info("Warning! Error! Your start date is after your end date. No filtering, return input data set.")
-    result <- data
-  } else if (minT>endTime | maxT<startTime)
+    startTime0 <- startTime
+    endTime0 <- endTime
+    startTime <- endTime0
+    endTime <- startTime0
+    logger.info("Warning! Error! Your start timestamp is after your end timestamp. We assume that they were switched and filter the data accordingly.")
+  }
+  
+  if (minT>endTime | maxT<startTime)
   {
-    logger.info("Warning! None of your data lies in the requested time range. No filtering, return input data set.")
-    result <- data
+    logger.info("Warning! None of your data lies in the requested time range. Return NULL.")
+    result <- NULL
   } else
   {
     result <- data[timestamps(data)>=as.POSIXct(startTime)&
