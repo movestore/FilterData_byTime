@@ -28,6 +28,6 @@ none
 
 **Parameter `endTime`:** if no end timestamp is defined then the last timestamp of the data is used
 
-!> If the start time is defined to be after the end time, a warning is given. The algorithm switches the parameters and filters the data in the sensible time frame. 
+:warning: If the start time is defined to be after the end time, a warning is given. The algorithm switches the parameters and filters the data in the sensible time frame. 
 
 **Data:** If none of the locations in the input data set lie in the requested time range, a warning is given and a NULL data set is returned. The NULL return value likely produces an error.
