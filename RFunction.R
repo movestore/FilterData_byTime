@@ -8,12 +8,12 @@ rFunction <- function(data, startTime=NULL, endTime=NULL)
   
   if (is.null(startTime)) 
   {
-    logger.info(paste("No start time given, keep all data with minimum timestamp",min(timestamps(data))))
+    logger.info(paste("No start time given, keep all data with minimum timestamp",minT))
     startTime <- minT
   } else logger.info(paste("Start time given:",startTime))
   if (is.null(endTime)) 
   {
-    logger.info(paste("No end time given, keep all data with maximum timestamp",max(timestamps(data))))
+    logger.info(paste("No end time given, keep all data with maximum timestamp",maxT))
     endTime <- maxT
   } else logger.info(paste("End time given:",endTime))
   

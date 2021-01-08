@@ -2,7 +2,7 @@ library(jsonlite)
 source("logger.R")
 source("RFunction.R")
 
-inputFileName = "input_lowres_geese_74X.rds" #important to set to NULL for movebank-download
+inputFileName = "input_RobinRoland.rds" #important to set to NULL for movebank-download
 outputFileName = "output.rds"
 
 args <- list()
@@ -17,8 +17,8 @@ args <- list()
 #    args[["password"]] = "any-password"
 
 # Add your arguments of your r function here
-args[["startTime"]] = "2014-07-01"
-args[["endTime"]] = NULL
+args[["startTime"]] = "2017-07-13 01:00:00"
+args[["endTime"]] = "2017-07-14 01:00:00"
 
 #################################################################
 #################################################################
