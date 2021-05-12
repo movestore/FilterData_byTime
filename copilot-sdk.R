@@ -2,7 +2,7 @@ library(jsonlite)
 source("logger.R")
 source("RFunction.R")
 
-inputFileName = "input_RobinRoland.rds" #important to set to NULL for movebank-download
+inputFileName = "input_FilterTime_AshleyError.rds" #important to set to NULL for movebank-download
 outputFileName = "output.rds"
 
 args <- list()
@@ -17,8 +17,8 @@ args <- list()
 #    args[["password"]] = "any-password"
 
 # Add your arguments of your r function here
-args[["startTime"]] = "2017-07-13 01:00:00"
-args[["endTime"]] = "2017-07-14 01:00:00"
+args[["startTime"]] = "2017-04-01T00:00:00.000Z"
+args[["endTime"]] = "2017-04-02T00:00:00.000Z"
 
 #################################################################
 #################################################################

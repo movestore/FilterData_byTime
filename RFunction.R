@@ -10,16 +10,22 @@ rFunction <- function(data, startTime=NULL, endTime=NULL)
   {
     logger.info(paste("No start time given, keep all data with minimum timestamp",minT))
     startTime <- minT
-  } else logger.info(paste("Start time given:",startTime))
-  if (is.null(endTime)) 
+  } else 
+  {
+    startTime <- as.POSIXct(startTime,format="%Y-%m-%dT%H:%M:%OSZ")
+    logger.info(paste("Start time given:",startTime))
+  }
+    
+    if (is.null(endTime)) 
   {
     logger.info(paste("No end time given, keep all data with maximum timestamp",maxT))
     endTime <- maxT
-  } else logger.info(paste("End time given:",endTime))
-  
-  startTime <- as.POSIXct(startTime)
-  endTime <- as.POSIXct(endTime)
-  
+  } else 
+  {
+    endTime <- as.POSIXct(endTime,format="%Y-%m-%dT%H:%M:%OSZ")
+    logger.info(paste("End time given:",endTime))
+  }  
+
   if (startTime>endTime)
   {
     startTime0 <- startTime
@@ -35,8 +41,7 @@ rFunction <- function(data, startTime=NULL, endTime=NULL)
     result <- NULL
   } else
   {
-    result <- data[timestamps(data)>=as.POSIXct(startTime)&
-                     timestamps(data)<=as.POSIXct(endTime),]
+    result <- data[timestamps(data)>=startTime & timestamps(data)<=endTime,]
     logger.info(paste("Filtering successful. It found",length(result),"positions of",length(namesIndiv(result)),"animal(s)."))
   }
   
