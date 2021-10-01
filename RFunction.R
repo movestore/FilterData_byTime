@@ -2,7 +2,7 @@ library('move')
 
 rFunction <- function(data, startTime=NULL, endTime=NULL)
 {
-  Sys.setenv(tz="GMT") 
+  Sys.setenv(tz="UTC") 
   minT <- min(timestamps(data))
   maxT <- max(timestamps(data))
   
