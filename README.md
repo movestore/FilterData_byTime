@@ -1,4 +1,4 @@
-# Filter Data by Time
+# Filter by Time Interval
 MoveApps
 
 Github repository: *github.com/movestore/FilterData_byTime*
@@ -18,15 +18,15 @@ moveStack in Movebank format
 ### Artefacts
 none
 
-### Parameters 
-`startTime`: a timestamp with year, month, day, hour, minute and second has to be selected interactively. Example: “2020-11-09 12:00:00”.
+### Settings 
+**Start Time (`startTime`):** a timestamp with year, month, day, hour, minute and second has to be selected interactively. Example: “2020-11-09 12:00:00”.
 
-`endTime`: another timestamp with year, month, day, hour, minute and second has to be selected interactively. Take care that this has to lie after the start timestamp. Example: "2020-11-12 23:22:00"
+**End Time (`endTime`):** another timestamp with year, month, day, hour, minute and second has to be selected interactively. Take care that this has to lie after the start timestamp. Example: "2020-11-12 23:22:00"
 
 ### Null or error handling:
-**Parameter `startTime`:** if no start timestamp is defined then the first timestamp of the data is used
+**Setting `startTime`:** if no start timestamp is defined then the first timestamp of the data is used
 
-**Parameter `endTime`:** if no end timestamp is defined then the last timestamp of the data is used
+**Setting `endTime`:** if no end timestamp is defined then the last timestamp of the data is used
 
 :warning: If the start time is defined to be after the end time, a warning is given. The algorithm switches the parameters and filters the data in the sensible time frame. 
 
