@@ -1,10 +1,10 @@
-library('move')
+library('move2')
 
-rFunction <- function(data, startTime=NULL, endTime=NULL)
+rFunction <- function(data, startTime=NULL, endTime=NULL, filter=TRUE)
 {
   Sys.setenv(tz="UTC") 
-  minT <- min(timestamps(data))
-  maxT <- max(timestamps(data))
+  minT <- min(mt_time(data))
+  maxT <- max(mt_time(data))
   
   if (is.null(startTime)) 
   {
@@ -35,17 +35,34 @@ rFunction <- function(data, startTime=NULL, endTime=NULL)
     logger.info("Warning! Error! Your start timestamp is after your end timestamp. We assume that they were switched and filter the data accordingly.")
   }
   
-  if (minT>endTime | maxT<startTime)
+  if (filter==TRUE)
   {
-    logger.info("Warning! None of your data lies in the requested time range. Return NULL.")
-    result <- NULL
+    if (minT>endTime | maxT<startTime)
+    {
+      logger.info("Warning! None of your data lies in the requested time range. Return NULL.")
+      result <- NULL
+    } else
+    {
+      result <- data[mt_time(data)>=startTime & mt_time(data)<=endTime,]
+      logger.info(paste("Filtering successful. It found",nrow(result),"positions of",length(unique(mt_track_id(result))),"track(s)."))
+    }
   } else
   {
-    result <- data[timestamps(data)>=startTime & timestamps(data)<=endTime,]
-    logger.info(paste("Filtering successful. It found",length(result),"positions of",length(namesIndiv(result)),"animal(s)."))
+    if (minT>endTime | maxT<startTime)
+    {
+      logger.info("Warning! None of your data lies in the requested time range. Return full data set with all 'in_time' = 'in'.")
+      result <- data
+      result$in_time <- 'in'
+    } else
+    {
+      result <- data
+      ix <- which(mt_time(data)>=startTime & mt_time(data)<=endTime)
+      result$in_time <- NA
+      result$in_time[ix] <- 'in'
+      result$in_time[-ix] <- 'out'
+      logger.info(paste("Filtering successful. It found",nrow(result),"positions of",length(unique(mt_track_id(result))),"track(s). The attribute 'in_time' is appended to your input data."))
+    }
   }
-  
-  #zero move cleanup not necessary
 
   result
 }

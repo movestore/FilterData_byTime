@@ -13,12 +13,19 @@
       "description": "Select the maximum timestamp for filtering",
       "defaultValue": null,
       "type": "INSTANT"
+    },
+	{
+      "id": "filter",
+      "name": "Filter data or annotate",
+      "description": "Select if you want your data filtered to retain only locations in the time interval (TRUE) or keep all locations with the added annotation 'in_time' (FALSE)",
+      "defaultValue": true,
+      "type": "CHECKBOX"
     }
   ],
   "dependencies": {
     "R": [
       {
-        "name": "move"
+        "name": "move2"
       }
 	]
   },
@@ -28,6 +35,7 @@
   "language": "eng",
   "keywords": [
     "filter",
+	"annotate",
     "time range",
 	"time",
     "locations"
